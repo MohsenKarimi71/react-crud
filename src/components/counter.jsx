@@ -1,32 +1,26 @@
 import React, { useState } from "react";
 
-function Counter() {
-  const [tags, setTags] = useState(["tag1", "tag2", "tag3"]);
-  const [count, setCount] = useState(0);
+function Counter(props) {
+  const [value, setValue] = useState(props.value);
 
   const getBadgeClasses = () => {
-    return "m-2 badge bg-".concat(count > 0 ? "secondary" : "warning");
+    return "m-2 badge bg-".concat(value > 0 ? "secondary" : "warning");
   };
 
-  const formatCount = () => {
-    return count > 0 ? count : "Zero";
+  const formatValue = () => {
+    return value > 0 ? value : "Zero";
   };
 
   const handleIncrement = () => {
-    setCount(count + 1);
+    setValue(value + 1);
   };
 
   return (
     <div>
-      <span className={getBadgeClasses()}>{formatCount()}</span>
+      <span className={getBadgeClasses()}>{formatValue()}</span>
       <button className="btn btn-primary btn-sm" onClick={handleIncrement}>
         Increment
       </button>
-      <ul>
-        {tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
     </div>
   );
 }
