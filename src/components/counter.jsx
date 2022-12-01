@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Counter(props) {
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState(props.counter.value);
 
   const getBadgeClasses = () => {
     return "m-2 badge bg-".concat(value > 0 ? "secondary" : "warning");
@@ -18,8 +18,14 @@ function Counter(props) {
   return (
     <div>
       <span className={getBadgeClasses()}>{formatValue()}</span>
-      <button className="btn btn-primary btn-sm" onClick={handleIncrement}>
+      <button onClick={handleIncrement} className="btn btn-primary btn-sm">
         Increment
+      </button>
+      <button
+        onClick={() => props.onDelete(props.counter.id)}
+        className="btn btn-danger btn-sm m-2"
+      >
+        Delete
       </button>
     </div>
   );
