@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Counter(props) {
-  const [value, setValue] = useState(props.counter.value);
-
   const getBadgeClasses = () => {
-    return "m-2 badge bg-".concat(value > 0 ? "secondary" : "warning");
+    return "m-2 badge bg-".concat(
+      props.counter.value > 0 ? "secondary" : "warning"
+    );
   };
 
   const formatValue = () => {
-    return value > 0 ? value : "Zero";
-  };
-
-  const handleIncrement = () => {
-    setValue(value + 1);
+    return props.counter.value > 0 ? props.counter.value : "Zero";
   };
 
   return (
     <div>
       <span className={getBadgeClasses()}>{formatValue()}</span>
-      <button onClick={handleIncrement} className="btn btn-primary btn-sm">
+      <button
+        onClick={() => props.onIncrement(props.counter)}
+        className="btn btn-primary btn-sm"
+      >
         Increment
       </button>
       <button
